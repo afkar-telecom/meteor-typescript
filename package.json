@@ -1,7 +1,11 @@
 {
   "name": "@digicore/meteor-typescript",
-  "author": "@digicore",
-  "version": "0.9.3",
+  "author": {
+    "name": "Cosmin Dumitrache",
+    "email": "contact@cosmindumitrache.com",
+    "url": "http://www.cosmindumitrache.com/"
+  },
+  "version": "0.9.4",
   "license": "MIT",
   "description": "TypeScript wrapper package for use with Meteor",
   "keywords": [
@@ -31,12 +35,12 @@
     "url": "https://github.com/cosmin-dumitrache/meteor-typescript/issues"
   },
   "dependencies": {
-    "diff": "^4.0.2",
-    "lru-cache": "^6.0.0",
-    "object-sizeof": "^1.6.1",
-    "random-js": "^2.1.0",
+    "diff": "^2.2.2",
+    "lru-cache": "^4.1.1",
+    "object-sizeof": "^1.2.0",
+    "random-js": "^1.0.3",
     "typescript": "^4.0.2",
-    "underscore": "^1.11.0"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
