@@ -1,10 +1,6 @@
 {
-  "name": "@afkar-telecom/meteor-typescript",
-  "author": {
-    "name": "Afkar Telecom",
-    "email": "info@afkartelecom.com",
-    "url": "http://www.afkar.digital/"
-  },
+  "name": "@fernando.sainz/meteor-typescript",
+  "author": "Afkar Telecom <info@afkartelecom.com> (http://www.afkar.digital/)",
   "version": "0.10.0",
   "license": "MIT",
   "description": "TypeScript wrapper package for use with Meteor",
@@ -29,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/afkar-telecom/meteor-typescript.git"
+    "url": "git+https://github.com/afkar-telecom/meteor-typescript.git"
   },
   "bugs": {
     "url": "https://github.com/afkar-telecom/meteor-typescript/issues"
@@ -50,5 +46,9 @@
     "istanbul": "^0.4.3",
     "jasmine-node": "^1.14.5",
     "randomstring": "^1.1.4"
+  },
+  "homepage": "https://github.com/afkar-telecom/meteor-typescript#readme",
+  "directories": {
+    "test": "tests"
   }
 }
