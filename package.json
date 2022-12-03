@@ -1,7 +1,7 @@
 {
   "name": "@fernando.sainz/meteor-typescript",
   "author": "Afkar Telecom <info@afkartelecom.com> (http://www.afkar.digital/)",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "license": "MIT",
   "description": "TypeScript wrapper package for use with Meteor",
   "keywords": [
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "diff": "5.1.0",
-    "lru-cache": "7.14.1",
+    "lru-cache": "4.1.1",
     "object-sizeof": "1.6.3",
     "random-js": "2.1.0",
     "typescript": "4.9.3",
