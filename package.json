@@ -1,7 +1,7 @@
 {
   "name": "@fernando.sainz/meteor-typescript",
   "author": "Afkar Telecom <info@afkartelecom.com> (http://www.afkar.digital/)",
-  "version": "0.10.1",
+  "version": "0.10.3",
   "license": "MIT",
   "description": "TypeScript wrapper package for use with Meteor",
   "keywords": [
@@ -39,6 +39,7 @@
     "underscore": "1.13.6"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",

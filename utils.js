@@ -1,10 +1,7 @@
-// Copied from https://github.com/meteor/babel/blob/master/util.js
-
-import fs from "fs";
-import path from "path";
-import { createHash } from "crypto";
-import assert from "assert";
-import _ from "underscore";
+var fs = require("fs");
+var path = require("path");
+var createHash = require("crypto").createHash;
+var assert = require("assert");
 
 exports.mkdirp = function mkdirp(dir) {
   if (! fs.existsSync(dir)) {
@@ -25,50 +22,55 @@ exports.mkdirp = function mkdirp(dir) {
   return dir;
 };
 
-// Borrowed from another MIT-licensed project that benjamn wrote:
-// https://github.com/reactjs/commoner/blob/235d54a12c/lib/util.js#L136-L168
-function deepHash(val) {
-  var hash = createHash("sha1");
-  var type = typeof val;
+exports.deepClone = function (val) {
+  return deepCloneHelper(val, new Map);
+};
 
-  if (val === null) {
-    type = "null";
+function deepCloneHelper(val, seen) {
+  if (seen.has(val)) {
+    return seen.get(val);
   }
 
-  switch (type) {
-    case "object":
-      var keys = Object.keys(val);
-
-      // Array keys will already be sorted.
-      if (! Array.isArray(val)) {
-        keys.sort();
-      }
-
-      keys.forEach(function(key) {
-        if (typeof val[key] === "function") {
-          // Silently ignore nested methods, but nevertheless complain below
-          // if the root value is a function.
-          return;
-        }
-
-        hash.update(key + "\0").update(deepHash(val[key]));
-      });
-
-      break;
-
-    case "function":
-      assert.ok(false, "cannot hash function objects");
-      break;
-
-    default:
-      hash.update("" + val);
-      break;
+  if (Array.isArray(val)) {
+    const copy = new Array(val.length);
+    seen.set(val, copy);
+    val.forEach(function (child, i) {
+      copy[i] = deepCloneHelper(child, seen);
+    });
+    return copy;
   }
 
-  return hash.digest("hex");
+  if (val !== null && typeof val === "object") {
+    const copy = Object.create(Object.getPrototypeOf(val));
+    seen.set(val, copy);
+
+    const handleKey = function (key) {
+      const desc = Object.getOwnPropertyDescriptor(val, key);
+      desc.value = deepCloneHelper(val[key], seen);
+      Object.defineProperty(copy, key, desc);
+    };
+
+    Object.getOwnPropertyNames(val).forEach(handleKey);
+    Object.getOwnPropertySymbols(val).forEach(handleKey);
+
+    return copy;
+  }
+
+  return val;
 }
 
-exports.deepHash = function(val) {
+function deepHash(val) {
+  return createHash("sha1").update(
+    JSON.stringify(val, function (key, value) {
+      switch (typeof value) {
+      case "function": return String(value);
+      default: return value;
+      }
+    })
+  ).digest("hex");
+}
+
+exports.deepHash = function (val) {
   var argc = arguments.length;
   if (argc === 1) {
     return deepHash(val);
@@ -80,14 +82,4 @@ exports.deepHash = function(val) {
   }
 
   return deepHash(args);
-};
-
-exports.assertProps = function(obj, props) {
-  assert.ok(obj);
-  assert.ok(props);
-
-  var len = props.length;
-  for (var i = 0; i < len; i++) {
-    assert.ok(_.has(obj, props[i]), `Prop ${props[i]} not defined`);
-  }
 };
