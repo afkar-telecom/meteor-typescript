@@ -1,7 +1,7 @@
 {
   "name": "@fernando.sainz/meteor-typescript",
   "author": "Afkar Telecom <info@afkartelecom.com> (http://www.afkar.digital/)",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "license": "MIT",
   "description": "TypeScript wrapper package for use with Meteor",
   "keywords": [
