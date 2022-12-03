@@ -13,7 +13,7 @@ describe("meteor-typescript -> ", function() {
   describe("testing diagnostics and typings -> ", function() {
     var codeLineWithImport = "import {api} from 'lib'; export const foo = 'foo'";
 
-    xit("should contain a semantic error when some module undefined", function() {
+    it("should contain a semantic error when some module undefined", function() {
       var result = meteorTS.compile(codeLineWithImport, getOptions());
 
       expect(result.diagnostics.semanticErrors).not.toBeNull();
@@ -24,7 +24,7 @@ describe("meteor-typescript -> ", function() {
       expect(error).toContain("Cannot find module 'lib'");
     });
 
-    xit("diagnostics re-evaluation works fine", function() {
+    it("diagnostics re-evaluation works fine", function() {
       var result1 = meteorTS.compile(codeLineWithImport);
 
       var code1 = result1.diagnostics.semanticErrors[0].code;
