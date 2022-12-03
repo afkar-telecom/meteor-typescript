@@ -3,15 +3,13 @@ var fs = require("fs");
 var assert = require("assert");
 var LRU = require("lru-cache");
 var sizeof = require('object-sizeof');
-const { Random } = require("random-js");
+var random = require("random-js")();
 
 var utils = require("./utils");
 var globalSourceHost = require("./files-source-host");
 var logger = require("./logger").default;
 
 var pkgVersion = require("../package.json").version;
-
-const random = new Random();
 
 function meteorLocalDir() {
   var cwdDir = process.cwd();
